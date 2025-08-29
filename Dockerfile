@@ -18,7 +18,7 @@ COPY . /app
 ARG RELEASE_BUILD=true
 
 RUN --mount=type=cache,id=baibot-cargo-cache,target=/cargo,sharing=locked \
-	--mount=type=cache,target=/target,sharing=locked \
+	--mount=type=cache,id=baibot-target-cache,target=/target,sharing=locked \
 	if [ "$RELEASE_BUILD" = "true" ]; then \
 		cargo build --release; \
 	else \
@@ -26,7 +26,7 @@ RUN --mount=type=cache,id=baibot-cargo-cache,target=/cargo,sharing=locked \
 	fi
 
 # Move it out of the mounted cache, so we can copy it in the next stage.
-RUN --mount=type=cache,target=/target,sharing=locked \
+RUN --mount=type=cache,id=baibot-target-cache,target=/target,sharing=locked \
 	if [ "$RELEASE_BUILD" = "true" ]; then \
 		cp /target/release/baibot /baibot; \
 	else \
