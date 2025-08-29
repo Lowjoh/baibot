@@ -17,7 +17,7 @@ COPY . /app
 
 ARG RELEASE_BUILD=true
 
-RUN --mount=type=cache,id=cargo-cache,target=/cargo,sharing=locked \
+RUN --mount=type=cache,id=baibot-cargo-cache,target=/cargo,sharing=locked \
 	--mount=type=cache,target=/target,sharing=locked \
 	if [ "$RELEASE_BUILD" = "true" ]; then \
 		cargo build --release; \
