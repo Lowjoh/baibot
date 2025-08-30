@@ -81,7 +81,7 @@ agents:
       config:
         base_url: https://api.anthropic.com/v1
         # Set the API key via the ANTHROPIC_API_KEY environment variable (recommended for Railway or Docker)
-        api_key: ""
+        api_key: ${{ANTHROPIC_API_KEY}}
         text_generation:
           model_id: claude-opus-4-1-20250805
           prompt: "You are a brief, but helpful bot called {{ baibot_name }} powered by the {{ baibot_model_id }} model. The date/time of this conversation's start is: {{ baibot_conversation_start_time_utc }}."
