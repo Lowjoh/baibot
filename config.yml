@@ -46,7 +46,8 @@ access:
 persistence:
   # This is unset here, because we expect the configuration to come from an environment variable (BAIBOT_PERSISTENCE_DATA_DIR_PATH).
   # In your setup, you may wish to set this to a directory path.
-  data_dir_path: null
+  data_dir_path: ${{BAIBOT_PERSISTENCE_DATA_DIR_PATH}}
+
 
   # An optional secret for encrypting the bot's session data (stored in data_dir_path).
   # This must be 32-bytes (64 characters when HEX-encoded).
