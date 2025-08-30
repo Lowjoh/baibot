@@ -6,13 +6,13 @@ homeserver:
   url: http://matrix-conduit-production.up.railway.app
 
 user:
-  mxid_localpart: claude
+  mxid_localpart: "@claude:matrix-conduit-production.up.railway.app"
   password: ${{BAIBOT_SECRET}}
 
 
   # The name the bot uses as a display name and when it refers to itself.
   # Leave empty to use the default (baibot).
-  name: baibot
+  name: claude
 
   encryption:
     # An optional passphrase to use for backing up and recovering the bot's encryption keys.
@@ -41,8 +41,8 @@ room:
 
 access:
   # Space-separated list of MXID patterns which specify who is an admin.
-  admin_patterns:
-    - "@admin:synapse.127.0.0.1.nip.io"
+  # admin_patterns:
+  #   - "@admin:synapse.127.0.0.1.nip.io"
 
 persistence:
   # This is unset here, because we expect the configuration to come from an environment variable (BAIBOT_PERSISTENCE_DATA_DIR_PATH).
