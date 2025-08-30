@@ -6,8 +6,9 @@ homeserver:
   url: matrix-conduit:6167
 
 user:
-  mxid_localpart: baibot
-  password: baibot
+  mxid_localpart: claude
+  password: ${{BAIBOT_SECRET}}
+
 
   # The name the bot uses as a display name and when it refers to itself.
   # Leave empty to use the default (baibot).
