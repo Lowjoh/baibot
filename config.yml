@@ -40,6 +40,9 @@ room:
   post_join_self_introduction_enabled: true
 
 access:
+  admin_patterns:
+    - "@johannes:matrix-conduit-production.up.railway.app"
+
   # Space-separated list of MXID patterns which specify who is an admin.
   # admin_patterns:
   #   - "@admin:synapse.127.0.0.1.nip.io"
