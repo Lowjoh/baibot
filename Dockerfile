@@ -17,13 +17,13 @@ COPY . /app
 
 ARG RELEASE_BUILD=true
 
-RUN --mount=type=cache,id=s/1a9dda2c-9d90-4fd9-8d7c-063fd3f393fa-cargo-cache,target=/cargo,sharing=locked \
-	--mount=type=cache,id=s/1a9dda2c-9d90-4fd9-8d7c-063fd3f393fa-target-cache,target=/target,sharing=locked \
-	if [ "$RELEASE_BUILD" = "true" ]; then \
-		cargo build --release; \
-	else \
-		cargo build; \
-	fi
+RUN --mount=type=cache,id=cache-cargo-cache,target=/cargo,sharing=locked \
+    --mount=type=cache,id=cache-target-cache,target=/target,sharing=locked \
+    if [ "$RELEASE_BUILD" = "true" ]; then \
+        cargo build --release; \
+    else \
+        cargo build; \
+    fi
 
 # Move it out of the mounted cache, so we can copy it in the next stage.
 RUN --mount=type=cache,id=s/1a9dda2c-9d90-4fd9-8d7c-063fd3f393fa-target-cache,target=/target,sharing=locked \
