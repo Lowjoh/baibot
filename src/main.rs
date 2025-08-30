@@ -6,10 +6,16 @@ use baibot::{Bot, Config, load_config};
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    info!("Application is starting...");
+    info!("Main application is starting...");
     match load_config() {
-        Ok(config) => run_with_config(config).await,
-        Err(err) => Err(anyhow::anyhow!("Failed loading configuration: {}", err)),
+        Ok(config) => {
+            info!("Configuration loaded successfully.");
+            run_with_config(config).await
+        },
+        Err(err) => {
+            info!("Failed loading configuration: {}", err);
+            Err(anyhow::anyhow!("Failed loading configuration: {}", err))
+        },
     }
 }
 
