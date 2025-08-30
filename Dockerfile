@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y ca-certificates sqlite3 && \
 # Install Python and dependencies for the proxy
 RUN apt-get update
 RUN apt-get install -y python3 python3-pip
-RUN pip3 install flask requests
+RUN pip3 install --break-system-packages flask requests
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
