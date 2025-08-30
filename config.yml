@@ -3,7 +3,7 @@ homeserver:
   # server_name: synapse.127.0.0.1.nip.io
   # url: http://synapse.127.0.0.1.nip.io:42020
   server_name: matrix-conduit-production.up.railway.app
-  url: http://matrix-conduit.railway.internal:6167
+  url: http://matrix-conduit.railway.internal
 
 user:
   mxid_localpart: claude
