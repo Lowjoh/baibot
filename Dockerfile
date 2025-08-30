@@ -8,30 +8,11 @@ FROM docker.io/rust:1.88.0-slim-bookworm AS build
 
 RUN apt-get update && apt-get install -y build-essential pkg-config libssl-dev libsqlite3-dev
 
-ENV CARGO_HOME=/cargo
-ENV CARGO_TARGET_DIR=/target
-
 WORKDIR /app
 
 COPY . /app
 
-ARG RELEASE_BUILD=true
-
-RUN --mount=type=cache,id=cache-cargo-cache,target=/cargo,sharing=locked \
-    --mount=type=cache,id=cache-target-cache,target=/target,sharing=locked \
-    if [ "$RELEASE_BUILD" = "true" ]; then \
-        cargo build --release; \
-    else \
-        cargo build; \
-    fi
-
-# Move it out of the mounted cache, so we can copy it in the next stage.
-RUN --mount=type=cache,id=s/1a9dda2c-9d90-4fd9-8d7c-063fd3f393fa-target-cache,target=/target,sharing=locked \
-	if [ "$RELEASE_BUILD" = "true" ]; then \
-		cp /target/release/baibot /baibot; \
-	else \
-		cp /target/debug/baibot /baibot; \
-	fi
+RUN cargo build --release
 
 #######################################
 #                                     #
@@ -47,7 +28,7 @@ RUN apt-get update && apt-get install -y ca-certificates sqlite3 && \
 
 WORKDIR /app
 
-COPY --from=build /baibot .
+COPY --from=build /app/target/release/baibot .
 
 ENTRYPOINT ["/bin/sh", "-c"]
 
