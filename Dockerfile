@@ -27,10 +27,11 @@ RUN apt-get update && apt-get install -y ca-certificates sqlite3 && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Python and dependencies for the proxy
-RUN apt-get update && apt-get install -y python3 python3-pip && \
-    pip3 install flask requests && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update
+RUN apt-get install -y python3 python3-pip
+RUN pip3 install flask requests
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
 
 # Copy the proxy script
 COPY proxy.py /app/proxy.py
