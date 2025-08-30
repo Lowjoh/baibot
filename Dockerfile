@@ -29,6 +29,7 @@ RUN apt-get update && apt-get install -y ca-certificates sqlite3 && \
 WORKDIR /app
 
 COPY --from=build /app/target/release/baibot .
+COPY config.yml /app/config.yml
 
 ENTRYPOINT ["/bin/sh", "-c"]
 
