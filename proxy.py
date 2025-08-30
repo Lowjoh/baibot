@@ -6,6 +6,8 @@ logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
 
+logging.info('Proxy application is starting...')
+
 @app.route('/_matrix/client/<path:path>', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def proxy(path):
     logging.debug(f'Received {request.method} request for path: {path}')

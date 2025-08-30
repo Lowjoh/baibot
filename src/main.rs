@@ -1,10 +1,12 @@
 use tracing_subscriber::EnvFilter;
 use tracing_subscriber::fmt::format::FmtSpan;
+use tracing::info;
 
 use baibot::{Bot, Config, load_config};
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
+    info!("Application is starting...");
     match load_config() {
         Ok(config) => run_with_config(config).await,
         Err(err) => Err(anyhow::anyhow!("Failed loading configuration: {}", err)),
