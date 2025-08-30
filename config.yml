@@ -2,8 +2,8 @@ homeserver:
   # The canonical homeserver domain name
   # server_name: synapse.127.0.0.1.nip.io
   # url: http://synapse.127.0.0.1.nip.io:42020
-  server_name: matrix-conduit
-  url: matrix-conduit:6167
+  server_name: https://matrix-conduit.railway.internal
+  url: https://matrix-conduit.railway.internal:6167
 
 user:
   mxid_localpart: claude
