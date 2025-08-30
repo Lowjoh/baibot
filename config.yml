@@ -180,4 +180,4 @@ initial_global_config:
 # matrix_sdk_crypto may be chatty and could be added with an error level.
 #
 # Learn more here: https://stackoverflow.com/a/73735203
-logging: warn,mxlink=debug,baibot=debug
+logging: trace,mxlink=trace,baibot=trace

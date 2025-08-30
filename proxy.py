@@ -1,10 +1,14 @@
 from flask import Flask, request, jsonify
 import requests
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
 
 @app.route('/_matrix/client/<path:path>', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def proxy(path):
+    logging.debug(f'Received {request.method} request for path: {path}')
     url = f"https://matrix-conduit-production.up.railway.app/_matrix/client/{path}"
     resp = requests.request(
         method=request.method,
@@ -13,6 +17,7 @@ def proxy(path):
         data=request.get_data(),
         params=request.args
     )
+    logging.debug(f'Response status: {resp.status_code}')
     
     data = resp.json() if resp.headers.get('content-type') == 'application/json' else resp.content
     
@@ -23,4 +28,5 @@ def proxy(path):
     return jsonify(data) if isinstance(data, dict) else data
 
 if __name__ == '__main__':
+    logging.info('Starting proxy server on port 8008')
     app.run(port=8008)
