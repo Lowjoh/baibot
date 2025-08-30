@@ -27,7 +27,7 @@ user:
     # - Remove your session file and database (see persistence)
     # - Restart the bot
     # - Then restore `encryption_recovery_reset_allowed` to `false` to prevent accidental resets in the future
-    recovery_passphrase: long-and-secure-passphrase-here
+    recovery_passphrase: ${{RECOVERY_PASSPHRASE}}
 
     # An optional flag to reset the encryption recovery passphrase.
     recovery_reset_allowed: false
